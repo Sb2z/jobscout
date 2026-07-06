@@ -1,0 +1,87 @@
+# Profil de recherche — Samuel (chef de projet IA & automatisation).
+# C'est le seul fichier à adapter : l'agent score chaque offre contre ces
+# mots-clés (titre x3, tags x2, description x1, multiplié par le poids).
+
+headline: >
+  Chef de projet IA & automatisation — construit des agents LLM (Claude/MCP),
+  des workflows d'automatisation (n8n / Power Automate, Python, webhooks,
+  Telegram) et des pipelines data/OCR. Expériences : contrôle documentaire
+  automatisé dans le luxe, plateforme de trading multi-agents. FR natif, EN
+  courant. Cible : Suisse romande, Paris, remote Europe.
+
+# Requêtes envoyées aux sources qui acceptent une recherche libre.
+search_queries:
+  - "ai automation"
+  - "ai agent"
+  - "automation engineer"
+  - "ai project manager"
+  - "workflow automation"
+  - "rpa"
+
+# Au moins UN de ces termes doit apparaître, sinon l'offre est ignorée.
+must_have_any:
+  - automation
+  - automatisation
+  - "ai "
+  - " ia "
+  - llm
+  - rpa
+  - workflow
+  - agent
+  - python
+
+# Mots-clés pondérés (poids x position : titre x3, tags x2, description x1).
+keywords:
+  automation: 3
+  automatisation: 3
+  "ai agent": 5
+  "agent ia": 5
+  llm: 4
+  mcp: 5
+  n8n: 5
+  "power automate": 4
+  workflow: 2
+  orchestration: 2
+  rpa: 3
+  python: 2
+  ocr: 3
+  "project manager": 2
+  "chef de projet": 3
+  "digital transformation": 2
+  "process automation": 4
+  webhook: 2
+  api: 1
+  "prompt": 2
+  claude: 3
+  gpt: 2
+  chatbot: 2
+  "data pipeline": 2
+
+# Bonus de localisation (matching souple sur le champ lieu de l'offre).
+locations:
+  switzerland: 6
+  suisse: 6
+  geneva: 6
+  geneve: 6
+  lausanne: 8
+  zurich: 3
+  france: 4
+  paris: 5
+  remote: 4
+  europe: 2
+
+# Tout terme présent = offre écartée d'office.
+exclude:
+  - internship
+  - "stage "
+  - alternance
+  - apprentice
+  - unpaid
+  - "10+ years"
+  - "12+ years"
+
+# Score minimal pour retenir une offre.
+min_score: 12
+
+# Pays Adzuna interrogés si ADZUNA_APP_ID/KEY sont configurés (.env).
+adzuna_countries: ["fr", "ch"]
