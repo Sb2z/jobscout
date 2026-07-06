@@ -1,9 +1,9 @@
-# Profil de recherche — Samuel (chef de projet IA & automatisation).
+# Profil de recherche, Samuel (chef de projet IA & automatisation).
 # C'est le seul fichier à adapter : l'agent score chaque offre contre ces
 # mots-clés (titre x3, tags x2, description x1, multiplié par le poids).
 
 headline: >
-  Chef de projet IA & automatisation — construit des agents LLM (Claude/MCP),
+  Chef de projet IA & automatisation, construit des agents LLM (Claude/MCP),
   des workflows d'automatisation (n8n / Power Automate, Python, webhooks,
   Telegram) et des pipelines data/OCR. Expériences : contrôle documentaire
   automatisé dans le luxe, plateforme de trading multi-agents. FR natif, EN

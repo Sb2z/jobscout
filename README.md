@@ -1,6 +1,6 @@
 # JobScout
 
-Agent personnel de veille d'offres d'emploi : il collecte des offres sur plusieurs sources, les **score contre mon profil** (mots-clés pondérés, localisations, exclusions), déduplique ce qu'il a déjà vu, et **m'alerte sur Telegram** avec le lien pour postuler — en option, une lecture IA classe les meilleures offres et propose un angle d'attaque de candidature.
+Agent personnel de veille d'offres d'emploi : il collecte des offres sur plusieurs sources, les **score contre mon profil** (mots-clés pondérés, localisations, exclusions), déduplique ce qu'il a déjà vu, et **m'alerte sur Telegram** avec le lien pour postuler, en option, une lecture IA classe les meilleures offres et propose un angle d'attaque de candidature.
 
 C'est la même grammaire d'agent que mes autres projets ([prime-engine](https://github.com/Sb2z/prime-engine), [controldone](https://github.com/Sb2z/controldone)) : **déclencheur → collecte → scoring → état → alerte**, en un seul fichier Python sans dépendance lourde, pensé pour être piloté par un orchestrateur.
 
@@ -9,7 +9,7 @@ tâche planifiée / n8n / Power Automate  (déclencheur)
    → collecte      Remotive · Arbeitnow · Adzuna FR/CH (si clé)
    → scoring       profile.yaml : mots-clés pondérés (titre x3, tags x2, texte x1),
                     bonus localisation, exclusions, seuil
-   → dédup         data/seen.json — seules les NOUVELLES offres alertent
+   → dédup         data/seen.json, seules les NOUVELLES offres alertent
    → enrichissement (optionnel) Claude classe le top et suggère l'angle de candidature
    → alerte        Telegram (lien direct pour postuler) · --json pour les machines
 ```

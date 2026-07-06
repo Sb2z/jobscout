@@ -1,4 +1,4 @@
-"""JobScout — agent de veille d'offres d'emploi.
+"""JobScout, agent de veille d'offres d'emploi.
 
 Boucle agent classique : collecte multi-sources -> scoring contre un profil
 YAML -> deduplication (etat local) -> alerte Telegram avec lien pour postuler.
@@ -184,7 +184,7 @@ def llm_brief(matches: list[dict], profile: dict) -> str | None:
     if not api_key or not matches:
         return None
     offers = "\n".join(
-        f"- [{m['score']}] {m['title']} — {m['company']} ({m['location']}) {m['url']}"
+        f"- [{m['score']}] {m['title']}, {m['company']} ({m['location']}) {m['url']}"
         for m in matches[:10]
     )
     body = json.dumps({
@@ -299,14 +299,14 @@ def scan(args: argparse.Namespace) -> int:
         fresh_ids = {m["id"] for m in fresh}
         for m in (fresh if args.new_only else matches)[:args.top]:
             marker = "NEW " if m["id"] in fresh_ids else "    "
-            print(f"{marker}[{m['score']:>3}] {m['title']} — {m['company']}"
+            print(f"{marker}[{m['score']:>3}] {m['title']}, {m['company']}"
                   f" ({m['location']}) {m['source']}")
             print(f"      {m['url']}")
 
     if args.notify and fresh:
-        lines = [f"JobScout — {len(fresh)} nouvelle(s) offre(s)"]
+        lines = [f"JobScout, {len(fresh)} nouvelle(s) offre(s)"]
         for m in fresh[:8]:
-            lines.append(f"\n[{m['score']}] {m['title']}\n{m['company']} — "
+            lines.append(f"\n[{m['score']}] {m['title']}\n{m['company']}, "
                          f"{m['location']}\n{m['url']}")
         if brief:
             lines.append("\n--- Lecture IA ---\n" + brief)
@@ -317,7 +317,7 @@ def scan(args: argparse.Namespace) -> int:
 
 def main() -> int:
     _load_env()
-    parser = argparse.ArgumentParser(description="JobScout — veille d'offres d'emploi")
+    parser = argparse.ArgumentParser(description="JobScout, veille d'offres d'emploi")
     sub = parser.add_subparsers(dest="command", required=True)
     p_scan = sub.add_parser("scan", help="collecte, score, alerte")
     p_scan.add_argument("--notify", action="store_true", help="alerte Telegram des nouvelles offres")
